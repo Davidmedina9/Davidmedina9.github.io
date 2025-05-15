@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>pagina web</title>
+<style>
+  table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+  }
+  td {
+    border: 1px solid #999;
+    vertical-align: top;
+    padding: 15px;
+    width: 20%;
+  }
+  h3 {
+    text-align: center;
+  }
+  nav {
+    width: 90%;
+    margin: 20px auto;
+    font-size: 18px;
+    text-align: center;
+  }
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #0077cc;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  /* Estilo para el enlace de regreso */
+  #volver {
+    display: block;
+    width: 150px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  #volver:hover {
+    background-color: #005fa3;
+  }
+</style>
+</head>
+<body>
+
+<a id="volver" href="index.html">Volver al inicio</a>
+
+<table>
+  <tr>
+    <td id="calculoDias">
+      <h3>Cálculo de Días Vividos</h3>
+      <label for="nombre">Nombre:</label><br>
+      <input type="text" id="nombre"><br><br>
+      <label for="edad">Edad:</label><br>
+      <input type="number" id="edad"><br><br>
+      <button onclick="calcularDiasVividos()">Calcular</button>
+      <p id="resultado"></p>
+
+      <script>
+      function calcularDiasVividos() {
+        var nombre = document.getElementById("nombre").value.trim();
+        var edad = parseInt(document.getElementById("edad").value);
+        
+        if (!nombre) {
+          document.getElementById("resultado").innerText = "Por favor, ingresa tu nombre.";
+          return;
+        }
+        if (isNaN(edad) || edad <= 0) {
+          document.getElementById("resultado").innerText = "Por favor, ingresa una edad válida.";
+          return;
+        }
+        var diasVividos = Math.floor(edad * 365);
+        document.getElementById("resultado").innerText = nombre + ", has vivido aproximadamente " + diasVividos + " días.";
+      }
+      </script>
+    </td>
+
+    <td id="calculadoraResta">
+      <h3>Calculadora de Resta</h3>
+      <input type="number" id="num1" placeholder="Número 1"><br><br>
+      <input type="number" id="num2" placeholder="Número 2"><br><br>
+      <button onclick="
+        var n1 = parseFloat(document.getElementById('num1').value);
+        var n2 = parseFloat(document.getElementById('num2').value);
+        if (isNaN(n1) || isNaN(n2)) {
+          document.getElementById('resultado2').innerText = 'Por favor, ingresa ambos números.';
+        } else {
+          document.getElementById('resultado2').innerText = n1 - n2;
+        }
+      ">Restar</button>
+      <p id="resultado2"></p>
+    </td>
+
+    <td id="navegador">
+      <h3>Seleccionar Navegador</h3>
+      <form name="formu" id="formu">
+        Selecciona tu navegador favorito:<br><br>
+        <input type="radio" name="browser" onclick="check(this.value)" value="Internet Explorer"> Internet Explorer<br>
+        <input type="radio" name="browser" onclick="check(this.value)" value="Netscape"> Netscape<br>
+        <input type="radio" name="browser" onclick="check(this.value)" value="Opera"> Opera<br><br>
+        <input type="text" name="respuesta" size="20" id="respuesta" readonly>
+      </form>
+
+      <script>
+      function check(browser) {
+        document.getElementById("respuesta").value = browser;
+      }
+      </script>
+    </td>
+
+    <td id="verificacionEdad">
+      <h3>Verificación de Edad</h3>
+      <p>Por favor, introduce tu edad:</p>
+      <input type="number" id="edadInput"><br><br>
+      <button onclick="verificarEdad()">Verificar</button>
+      <p id="mensaje"></p>
+
+      <script>
+      function verificarEdad() {
+        var edad = parseInt(document.getElementById("edadInput").value);
+        if (isNaN(edad) || edad < 0) {
+          document.getElementById("mensaje").innerHTML = "Por favor, ingresa una edad válida.";
+          return;
+        }
+        if (edad >= 18) {
+          document.getElementById("mensaje").innerHTML = "¡Felicidades! ¡Ya puedes conducir!";
+        } else {
+          document.getElementById("mensaje").innerHTML = "Lo siento, debes tener al menos 18 años para poder conducir.";
+        }
+      }
+      </script>
+    </td>
+
+    <td id="cadenasTexto">
+      <h3>Cadenas de Texto</h3>
+      <p>Escribe una cadena de texto y presiona "Aceptar". Para finalizar, presiona "Cancelar".</p>
+      <button onclick="concatenarCadenas()">Aceptar</button>
+      <p id="cadenas"></p>
+
+      <script>
+      function concatenarCadenas() {
+        var cadena = prompt("Introduce una cadena de texto:");
+        var cadenasConcatenadas = "";
+
+        while (cadena !== null) {
+          cadena = cadena.trim();
+          if (cadena !== "") {
+            if (cadenasConcatenadas !== "") {
+              cadenasConcatenadas += " - ";
+            }
+            cadenasConcatenadas += cadena;
+          }
+          cadena = prompt("Introduce otra cadena de texto:");
+        }
+
+        document.getElementById("cadenas").innerHTML = "Cadenas concatenadas: " + cadenasConcatenadas;
+      }
+      </script>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
